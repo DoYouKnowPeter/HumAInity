@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Last Human Shift — An Exploration</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #0d0d0d;
+      color: #f5f5f5;
+      overflow-x: hidden;
+    }
+    header {
+      padding: 2rem;
+      text-align: center;
+      background: linear-gradient(90deg, #1a1a1a, #2d2d2d);
+      border-bottom: 1px solid #333;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+    header p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+      color: #cccccc;
+    }
+    main {
+      padding: 2rem 1rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .art-section {
+      margin-top: 2rem;
+      position: relative;
+    }
+    .art-section img {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid #444;
+      display: block;
+      margin: 0 auto 1rem auto;
+    }
+    .viewer-container {
+      position: relative;
+      margin-top: 3rem;
+    }
+    iframe.art-viewer {
+      width: 100%;
+      height: 500px;
+      border: none;
+      transition: opacity 1s ease-in-out, filter 1s ease-in-out;
+    }
+    .glitch-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.05) 0px,
+        rgba(255, 255, 255, 0.05) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+      animation: glitch 0.2s infinite;
+    }
+    @keyframes glitch {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(-1px, 1px); }
+      50% { transform: translate(1px, -1px); }
+      75% { transform: translate(-1px, -1px); }
+      100% { transform: translate(0, 0); }
+    }
+    .dot-controls {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin: 0 6px;
+      background-color: #666;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .dot.active {
+      background-color: #fff;
+    }
+    .iframe-wrapper {
+      margin: 3rem auto 1rem auto;
+      max-width: 90%;
+      text-align: center;
+    }
+    .iframe-wrapper iframe {
+      width: 100%;
+      max-width: 400px;
+      height: 300px;
+      border: none;
+    }
+    .iframe-wrapper div {
+      font-size: 0.8rem;
+      color: #aaa;
+      margin-top: 0.5rem;
+    }
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      header p {
+        font-size: 1rem;
+      }
+      iframe.art-viewer {
+        height: 400px;
+      }
+    }
+  </style>
+
+  <style>
+    .drifting-text {
+      margin-top: 4rem;
+      text-align: center;
+      font-size: 1.4rem;
+      color: #bbb;
+      position: relative;
+      z-index: 10;
+      padding: 0 1rem;
+    }
+
+    #shifting-text::after {
+      content: '';
+      animation: hallucinate 20s linear infinite alternate;
+    }
+
+    @keyframes hallucinate {
+      0% { content: "In a future of infinite creation, will meaning itself evaporate?"; }
+      20% { content: "If everything is art, is anything sacred?"; }
+      40% { content: "The machine imagines us better than we do."; }
+      60% { content: "Even silence is now a signal."; }
+      80% { content: "Humans: obsolete, yet yearned for."; }
+      100% { content: "The ghost in the algorithm paints with absence."; }
+    }
+
+    .animated-svg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+      mix-blend-mode: overlay;
+      opacity: 0.03;
+    }
+
+    .pulse {
+      animation: pulse 4s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.03; }
+      50% { transform: scale(1.05); opacity: 0.05; }
+      100% { transform: scale(1); opacity: 0.03; }
+    }
+  </style>
+  </head>
+
+<body>
+  <header>
+    <h1>Last Human Shift</h1>
+    <p>A visual and sonic meditation on automation, redundancy, and the unexpected revival of human expression in an age of infinite generativity.</p>
+  </header>
+
+  <main>
+    <section class="art-section">
+      <img src="A_traditional_painting_created_using_oil_or_acryli.png" alt="AI Inspired Artwork" />
+      <p>
+        This image emerged from a moment of real frustration — a sense of drifting in a world where direction is increasingly dictated by black-box systems. 
+        What began as a question (“What do I even *learn* anymore to remain relevant?”) became a curiosity: How would AI *see* this confusion? What would it create, and what could it miss?
+      </p>
+    </section>
+
+    <section class="viewer-container">
+      <div class="glitch-overlay"></div>
+      <iframe class="art-viewer" src="https://doyouknowpeter.GitHub.io/ART_Last_Human_Shift"></iframe>
+      <div class="dot-controls">
+        <span class="dot active" onclick="changeSlide(0)"></span>
+        <span class="dot" onclick="changeSlide(1)"></span>
+        <span class="dot" onclick="changeSlide(2)"></span>
+        <span class="dot" onclick="changeSlide(3)"></span>
+      </div>
+    </section>
+  
+  <section class="drifting-text">
+    <p id="shifting-text">
+      "In a future of infinite creation, will meaning itself evaporate?"
+    </p>
+  </section>
+  </main>
+
+
+  <div class="iframe-wrapper">
+    <iframe 
+      scrolling="no" 
+      frameborder="no" 
+      allow="autoplay" 
+      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/228328251&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+    </iframe>
+    <div>
+      <a href="https://soundcloud.com/doyouknowpeter" target="_blank" style="color: #ccc; text-decoration: none;">Peter Francis | pfw</a> &middot;
+      <a href="https://soundcloud.com/doyouknowpeter/one-day-later" target="_blank" style="color: #ccc; text-decoration: none;">One Day Later</a>
+    </div>
+  </div>
+
+  <script>
+    const viewer = document.querySelector('.art-viewer');
+    const dots = document.querySelectorAll('.dot');
+    const urls = [
+      "https://doyouknowpeter.GitHub.io/ART_Last_Human_Shift",
+      "https://doyouknowpeter.GitHub.io/ART_Last_Human_Shift_V2",
+      "https://doyouknowpeter.GitHub.io/ART_Last_Human_Shift_V3",
+      "https://doyouknowpeter.GitHub.io/ART_Last_Human_Shift_V4"
+    ];
+    let currentSlide = 0;
+    let interval = setInterval(nextSlide, 25000);
+
+    function changeSlide(index) {
+      clearInterval(interval);
+      updateSlide(index);
+      interval = setInterval(nextSlide, 25000);
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % urls.length;
+      updateSlide(currentSlide);
+    }
+
+    function updateSlide(index) {
+      viewer.style.opacity = '0';
+      setTimeout(() => {
+        viewer.src = urls[index];
+        viewer.style.filter = 'blur(3px)';
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[index].classList.add('active');
+      }, 600);
+      setTimeout(() => {
+        viewer.style.opacity = '1';
+        viewer.style.filter = 'none';
+      }, 1200);
+    }
+  </script>
+
+  <svg class="animated-svg pulse" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <defs>
+      <filter id="noiseFilter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2"/>
+      </filter>
+    </defs>
+    <rect width="100%" height="100%" filter="url(#noiseFilter)" />
+  </svg>
+</body>
+
+</html>
